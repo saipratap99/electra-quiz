@@ -1,0 +1,17 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+  font-family: "Karla", sans-serif;
+}
+.dropdown-menu {
+  background-color: #343a40;
+}
+i {
+  color: white;
+  padding-left: 5px;
+}
+.each-category {
+  display: flex;
+  align-items: center;
+}

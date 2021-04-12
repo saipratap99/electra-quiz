@@ -1,0 +1,29 @@
+.notice,
+.alert,
+#error_explanation {
+  font-family: sans-serif;
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(153, 253, 153, 0.836);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 2px solid darkgreen;
+  color: darkgreen;
+  font-size: 20px;
+}
+.alert,
+#error_explanation {
+  background-color: rgba(252, 155, 138, 0.753);
+  border: 2px solid darkred;
+  color: darkred;
+}
+
+#error_explanation h2 {
+  font-size: 21px;
+  font-weight: bold;
+}
+.error-message {
+  text-align: left;
+}

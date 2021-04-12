@@ -1,0 +1,88 @@
+// Place all the styles related to the User_questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+button {
+  background-color: transparent;
+  outline: none;
+  border: 0;
+}
+.main-head {
+  font-size: 26px;
+  padding: 8px;
+}
+#allq {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.question {
+  width: 70%;
+  margin: 0 auto;
+  align-items: center;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px grey;
+  margin-top: 5px;
+}
+.ques {
+  width: 100%;
+  text-align: left;
+  font-size: 21px;
+}
+#ques {
+  font-weight: bold;
+  color: darkslateblue;
+}
+.ans {
+  margin-top: 5px;
+  padding-top: 5px;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+form {
+  margin-top: 25px;
+  padding: 4px;
+}
+
+.options {
+  font-size: 19px;
+  padding: 8px;
+  margin: 8px;
+}
+
+.score-btn {
+  padding: 8px;
+  border: 2px solid rgb(80, 241, 80);
+  border-right: 0;
+  transition: all 0.8;
+  background-color: white;
+}
+.score:last-child {
+  border-right: 2px solid rgb(80, 241, 80);
+}
+.score-btn:hover {
+  background-color: rgb(80, 241, 80);
+  color: white;
+  transform: scale(1.2);
+}
+.tech {
+  width: 70%;
+  padding: 8px;
+  font-size: 21px;
+  margin: 5px auto;
+}
+
+#marks {
+  background-color: white;
+  border: 0;
+  box-shadow: 2px 2px 10px grey;
+  padding: 8px;
+  border-radius: 8px;
+}

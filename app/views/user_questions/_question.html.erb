@@ -1,0 +1,16 @@
+<div class="question" id=<%= "q #{question.question.id}" %>>
+  <div class="ques">
+    <p  id="ques"><%= "Q#{question.question.id}. " + question.question.question %></p>
+  </div>
+  <div class="score">
+    <%= form_with(url: :send_response , remote: true) do |form|%>
+      <% question.question.options.each do |opt| %>
+        <%= form.radio_button :option, opt.id , class: 'options', id: opt.id %>
+        <%= form.label opt.id.to_s.to_sym, opt.option %><br>
+      <% end %>
+      <br>
+      <%= form.submit "Submit", class: "btn btn-secondary" %>
+      <%= form.submit "Skip", class: "btn btn-secondary skip" %>
+    <% end %>
+  </div>
+</div>

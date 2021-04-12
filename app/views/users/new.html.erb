@@ -1,0 +1,18 @@
+<main class="signUpBox">
+  <p class="signUp-login">
+    Applicant details
+  </p>
+  <%= form_with url: users_path, class: "signUp-form" do |form| %>
+    <%= form.text_field :name,
+                         placeholder: "Name",
+                         autofocus:"autofocus"
+    %>
+    <br>
+    <%= form.text_field :regno,
+                          placeholder: "Registration Number",
+                          autofocus:"autofocus"
+    %>
+    <br>
+    <%= form.submit "Continue",data: { "disable-with": "Please wait..." }, class: "signUp-button"%>
+  <%end%>
+</main>

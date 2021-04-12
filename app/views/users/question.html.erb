@@ -1,0 +1,9 @@
+<%= form_with(url: add_question_path , local: true) do |form|%>
+  <%= form.text_area :question,size: "24x6",placeholder:"Type Question here..." %>
+  <br>
+  <%= form.text_area :ans,size: "24x6",placeholder:"Answer" %>
+  <br>
+  <%= form.text_field :ques_type, placeholder:"Question type" %>
+  <br>
+  <%= form.submit "Add Question", class: "btn btn-secondary" %>
+<% end %>
