@@ -18,7 +18,32 @@ require("channels");
 $(document).ready(function () {
   console.log("ready!");
 
+  let countdown;
+  let submit = document.querySelector('.submit');
 
+  // ajax request for submiting and fetching next question
+  let sendResponse = (duration)=>{
+    $.ajax({
+      type: "POST",
+      url: "/user_questions/send_response",
+      data: "",
+      success: function(repsonse){
+          document.querySelector('.submit').addEventListener('click',submitEvent);
+          startTimer(duration);
+        },
+      error: function(repsonse){console.log("error")}
+    });
+  };
+
+  // function for submit event click
+
+  let submitEvent = ()=>{
+    clearInterval(countdown);
+    sendResponse(10)
+  }
+
+
+  // countdown timer for question
   let startTimer = function(duration) {
 
     display = document.querySelector('#time');
@@ -26,7 +51,7 @@ $(document).ready(function () {
       return null;
     }
     var timer = duration;
-    let countdown = setInterval(function () {
+    countdown = setInterval(function () {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
@@ -38,18 +63,13 @@ $(document).ready(function () {
         if (--timer < 0) {
             clearInterval(countdown);
             let token = document.querySelector("form").querySelector('input').value;
-            $.ajax({
-              type: "POST",
-              url: "/user_questions/send_response",
-              data: "",
-              success: function(repsonse){
-                  startTimer(duration);
-                },
-              error: function(repsonse){console.log("error")}
-            });
+            sendResponse(duration);
         }
     }, 1000);
   }
+
+  // on click event for submit button
+  submit.addEventListener('click',submitEvent);
 
   startTimer(10);
 
