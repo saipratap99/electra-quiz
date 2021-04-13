@@ -4,6 +4,7 @@ class UserQuestionsController < ApplicationController
     # @non_tech_questions = UserQuestion.getNonTechQuestions(@current_user)
     ## @questions = @current_user.user_questions.order(id: :asc)
     UserQuestion.createQuestions
+
     @question = UserQuestion.where(is_attempted: false).first
     redirect_to :summary if @question == nil
   end
