@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "add/question", to: "users#question", as: :question
   post "add/question", to: "users#add", as: :add_question
   get "users/performance", to: "users#performance", as: :performance
+  get "user_questions/summary", to: "user_questions#summary", as: :summary
   root to: "users#new"
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

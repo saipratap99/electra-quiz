@@ -20,7 +20,11 @@ $(document).ready(function () {
 
 
   let startTimer = function(duration) {
+
     display = document.querySelector('#time');
+    if(display == null){
+      return null;
+    }
     var timer = duration;
     let countdown = setInterval(function () {
         minutes = parseInt(timer / 60, 10);
@@ -39,9 +43,8 @@ $(document).ready(function () {
               url: "/user_questions/send_response",
               data: "",
               success: function(repsonse){
-                console.log(display);
-                startTimer(duration);
-              },
+                  startTimer(duration);
+                },
               error: function(repsonse){console.log("error")}
             });
         }

@@ -5,6 +5,9 @@ class UserQuestionsController < ApplicationController
     ## @questions = @current_user.user_questions.order(id: :asc)
     UserQuestion.createQuestions
     @question = UserQuestion.where(is_attempted: false).first
+    unless @question
+      redirect_to :summary
+    end
   end
 
   def save_score
@@ -22,6 +25,11 @@ class UserQuestionsController < ApplicationController
   def store_response
     option_id = params[:option].to_i
     ques = UserQuestion.where(is_attempted: false).first
+
+    unless ques
+      redirect_to :summary
+    end
+
     if option_id == 0
       ques.option_id = nil
     else
@@ -34,5 +42,9 @@ class UserQuestionsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def summary
+    @questions = UserQuestion.all
   end
 end
