@@ -18,7 +18,9 @@ require("channels");
 $(document).ready(function () {
   console.log("ready!");
 
-  function startTimer(duration, display) {
+
+  let startTimer = function(duration) {
+    display = document.querySelector('#time');
     var timer = duration;
     let countdown = setInterval(function () {
         minutes = parseInt(timer / 60, 10);
@@ -27,15 +29,25 @@ $(document).ready(function () {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = "Time left: " + minutes + ":" + seconds;
+        display.innerHTML = "Time Left: " + minutes + ":" + seconds;
 
         if (--timer < 0) {
             clearInterval(countdown);
+            let token = document.querySelector("form").querySelector('input').value;
+            $.ajax({
+              type: "POST",
+              url: "/user_questions/send_response",
+              data: "",
+              success: function(repsonse){
+                console.log(display);
+                startTimer(duration);
+              },
+              error: function(repsonse){console.log("error")}
+            });
         }
     }, 1000);
   }
-  display = document.querySelector('#time');
 
-  startTimer(10,display);
+  startTimer(10);
 
 });
