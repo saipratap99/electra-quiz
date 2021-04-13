@@ -23,10 +23,11 @@ $(document).ready(function () {
 
   // ajax request for submiting and fetching next question
   let sendResponse = (duration)=>{
+    console.log($('form').serialize());
     $.ajax({
       type: "POST",
       url: "/user_questions/send_response",
-      data: "",
+      data: $('form').serialize(),
       success: function(repsonse){
           document.querySelector('.submit').addEventListener('click',submitEvent);
           startTimer(duration);
