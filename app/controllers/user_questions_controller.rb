@@ -47,4 +47,8 @@ class UserQuestionsController < ApplicationController
   def summary
     @questions = UserQuestion.all
   end
+
+  def submit
+    render js: "console.log('submited');"
+  end
 end
