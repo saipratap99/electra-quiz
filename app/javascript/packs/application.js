@@ -20,16 +20,18 @@ $(document).ready(function () {
 
   let countdown;
   let submit = document.querySelector('.submit');
+  let skip = document.querySelector('.skip');
 
   // ajax request for submiting and fetching next question
-  let sendResponse = (duration)=>{
-    console.log($('form').serialize());
+  let sendResponse = (duration,params)=>{
+    console.log(params);
     $.ajax({
       type: "POST",
       url: "/user_questions/send_response",
-      data: $('form').serialize(),
+      data: params,
       success: function(repsonse){
           document.querySelector('.submit').addEventListener('click',submitEvent);
+          document.querySelector('.skip').addEventListener('click',skipEvent);
           startTimer(duration);
         },
       error: function(repsonse){console.log("error")}
@@ -39,10 +41,17 @@ $(document).ready(function () {
   // function for submit event click
 
   let submitEvent = ()=>{
+    let params = $("form").serialize() + '&commit=submit';
     clearInterval(countdown);
-    sendResponse(10)
+    sendResponse(1*60,params);
   }
 
+  let skipEvent = ()=>{
+    let params = 'commit=skip';
+    console.log('skip');
+    clearInterval(countdown);
+    sendResponse(1*60,params);
+  }
 
   // countdown timer for question
   let startTimer = function(duration) {
@@ -58,20 +67,22 @@ $(document).ready(function () {
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-
+        if(seconds == 10){
+          display.style.color = '#ea5151';
+        }
         display.innerHTML = "Time Left: " + minutes + ":" + seconds;
-
         if (--timer < 0) {
+            let params = $("form").serialize();
             clearInterval(countdown);
-            let token = document.querySelector("form").querySelector('input').value;
-            sendResponse(duration);
+            sendResponse(duration,params);
         }
     }, 1000);
   }
 
-  // on click event for submit button
+  // on click event for submit and skip buttons
   submit.addEventListener('click',submitEvent);
+  skip.addEventListener('click',skipEvent);
 
-  startTimer(10);
+  startTimer(1*60);
 
 });
