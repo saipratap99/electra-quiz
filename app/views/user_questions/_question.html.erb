@@ -1,7 +1,10 @@
 <div class="question" id=<%= "q #{question.question.id}" %>>
-  <p id="time">Time Left: 01:00 </p>
+  <div class="ques-details">
+    <span class="ques-no"> <%= question_number %> </span>
+    <span id="time">Time Left: 00:59 </span>
+  </div>
   <div class="ques">
-    <p  id="ques"><%= "Q#{question.question.id}. " + question.question.question %></p>
+    <p  id="ques"><%= question.question.question %></p>
   </div>
   <div class="score">
     <%= form_with(url: :submit, remote: true) do |form| %>

@@ -1,3 +1,2 @@
-$(".all-messages").html("<%= j (render partial: 'users/msg',
-                                       locals: {notice: "Response submited" }) %>").hide().fadeIn(800);
-$("#allq").html("<%= j (render partial: 'question', locals: {question: UserQuestion.where(is_attempted: false).first}) %>").hide().fadeIn(800)
+
+$("#allq").html("<%= j (render partial: 'question', locals: {question: UserQuestion.where(is_attempted: false).first,question_number: @question_number}) %>").hide().fadeIn(800)

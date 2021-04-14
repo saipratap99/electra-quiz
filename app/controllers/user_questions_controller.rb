@@ -6,6 +6,11 @@ class UserQuestionsController < ApplicationController
     UserQuestion.createQuestions
 
     @question = UserQuestion.where(is_attempted: false).first
+    questions_count = UserQuestion.all.count
+    ques_remaining_count = UserQuestion.where(is_attempted: false).count - 1
+
+    @question_number = "Question: #{questions_count - ques_remaining_count}/#{questions_count}"
+
     redirect_to :summary if @question == nil
   end
 
@@ -23,21 +28,23 @@ class UserQuestionsController < ApplicationController
 
   def store_response
     option_id = params[:option].to_i
+    questions_count = UserQuestion.all.count
     unattempted_questions = UserQuestion.where(is_attempted: false).order(:id)
-    ques_count = unattempted_questions.count - 1
+    ques_remaining_count = unattempted_questions.count - 1
 
-    ques = unattempted_questions.first
+    @ques = unattempted_questions.first
+    @question_number = "Question: #{questions_count + 1 - ques_remaining_count}/#{questions_count}"
 
     if option_id == 0
-      ques.option_id = nil
+      @ques.option_id = nil
     else
-      ques.option_id = option_id
+      @ques.option_id = option_id
     end
 
-    ques.is_attempted = true
-    ques.save
+    @ques.is_attempted = true
+    @ques.save
 
-    redirect_to :summary if unattempted_questions.count == 0
+    redirect_to :summary if ques_remaining_count == 0
 
     respond_to do |format|
       format.js
