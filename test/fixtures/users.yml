@@ -4,26 +4,26 @@ one:
   name: MyString
   year: 1
   branch: MyString
-  regno: 1
-  phone: 1
+  regno: MyString
+  phone: MyString
   email: MyString
   password: MyString
   appears_for: MyString
   role: MyString
-  password_sent_at: 2021-04-16 00:24:09
-  current_sign_in_at: 2021-04-16 00:24:09
-  last_sign_in_at: 2021-04-16 00:24:09
+  password_sent_at: 2021-04-16 00:47:38
+  current_sign_in_at: 2021-04-16 00:47:38
+  last_sign_in_at: 2021-04-16 00:47:38
 
 two:
   name: MyString
   year: 1
   branch: MyString
-  regno: 1
-  phone: 1
+  regno: MyString
+  phone: MyString
   email: MyString
   password: MyString
   appears_for: MyString
   role: MyString
-  password_sent_at: 2021-04-16 00:24:09
-  current_sign_in_at: 2021-04-16 00:24:09
-  last_sign_in_at: 2021-04-16 00:24:09
+  password_sent_at: 2021-04-16 00:47:38
+  current_sign_in_at: 2021-04-16 00:47:38
+  last_sign_in_at: 2021-04-16 00:47:38

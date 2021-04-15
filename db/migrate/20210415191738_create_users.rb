@@ -4,8 +4,8 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.integer :year
       t.string :branch
-      t.integer :regno
-      t.integer :phone
+      t.string :regno
+      t.string :phone
       t.string :email, null: false
       t.string :password
       t.string :appears_for
