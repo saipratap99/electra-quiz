@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_052820) do
+ActiveRecord::Schema.define(version: 2021_04_15_185409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,23 @@ ActiveRecord::Schema.define(version: 2021_04_12_052820) do
     t.bigint "question_id", null: false
     t.index ["option_id"], name: "index_user_questions_on_option_id"
     t.index ["question_id"], name: "index_user_questions_on_question_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "year"
+    t.string "branch"
+    t.integer "regno"
+    t.integer "phone"
+    t.string "email", null: false
+    t.string "password"
+    t.string "appears_for"
+    t.string "role", default: "participant"
+    t.datetime "password_sent_at"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "options", "questions"
