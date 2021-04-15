@@ -56,7 +56,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <p>
                         <i class="fa fa-sign-out" aria-hidden="true"></i>
-                        <%= link_to "Exit", user_path(id: @current_user.id), method: :delete %>
+                        <%= link_to "Exit", user_logout_url(id: @current_user.id), method: :delete %>
                       </p>
                     </div>
                   </li>

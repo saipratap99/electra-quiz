@@ -1,18 +1,18 @@
 <main class="signUpBox">
   <p class="signUp-login">
-    Applicant details
+    Enter Login Credentials
   </p>
-  <%= form_with url: users_path, class: "signUp-form" do |form| %>
-    <%= form.text_field :name,
-                         placeholder: "Name",
+  <%= form_with url: :users_login, class: "signUp-form" do |form| %>
+    <%= form.text_field :email,
+                         placeholder: "Username",
                          autofocus:"autofocus"
     %>
     <br>
-    <%= form.text_field :regno,
-                          placeholder: "Registration Number",
+    <%= form.password_field :password,
+                          placeholder: "Password",
                           autofocus:"autofocus"
     %>
     <br>
-    <%= form.submit "Continue",data: { "disable-with": "Please wait..." }, class: "signUp-button"%>
+    <%= form.submit "LogIn",data: { "disable-with": "Please wait..." }, class: "signUp-button"%>
   <%end%>
 </main>
