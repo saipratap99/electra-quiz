@@ -3,6 +3,16 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { in: 3..50 }
   validates :regno, presence: true, uniqueness: true
 
+  def user_logged_in
+    self.current_sign_in_at = Time.now
+    self.save
+  end
+
+  def user_logged_out
+    self.last_sign_in_at = Time.now
+    self.save
+  end
+
   def generateTechQues
     questions = Question.all.where(ques_type: "tech").ids
     questions.each do |ques|

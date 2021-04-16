@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         @current_user = @user
         session[:current_user_id] = @user.id
         redirect_to(questions_path, notice: "Quiz has been started!")
-        puts "#################sdsds######################"
+        @user.user_loged_in
       else
         flash[:error] = "Invalid password!"
         redirect_to root_path
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @current_user.user_loged_out
     session[:current_user_id] = nil
     @current_user = nil
     redirect_to(root_path, notice: "Logged out successfully!")
@@ -41,10 +42,5 @@ class UsersController < ApplicationController
     ques_type = params[:ques_type]
     Question.create(question: question, ans: ans, ques_type: ques_type)
     redirect_to(question_path, notice: "Question added!")
-  end
-
-  def performance
-    User.user_performances
-    @users = User.all
   end
 end
