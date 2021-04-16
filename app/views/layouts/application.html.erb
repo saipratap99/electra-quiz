@@ -24,8 +24,8 @@
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="theme-color" content="#343a40">
-    </head>
-    <body>
+  </head>
+  <body>
       <nav class="navbar navbar-dark bg-dark navbar-expand-md">
         <a id="titlename" href="/" class="navbar-brand">ELECTRA Brainiac</a>
         <button
@@ -38,33 +38,35 @@
         <div class="collapse navbar-collapse" id="myNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-              <a href="/users/performance">Performance</a>
-              <li>
-                <% if @current_user %>
-                  <li class="nav-item dropdown">
-                    <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              >
-                      <%= @current_user.name %>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <p>
-                        <i class="fa fa-sign-out" aria-hidden="true"></i>
-                        <%= link_to "Exit", user_logout_url(id: @current_user.id), method: :delete %>
-                      </p>
-                    </div>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
-          </nav>
-          <%= render partial: "users/msg" %>
-          <%= yield %>
-        </body>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Help
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <p class="wa">
+                    <%= link_to "WhatsApp", 'https://wa.me/9032458427', target: :_blank %>
+                  </p>
+                  <p class="email">
+                    <%= mail_to "electra.seee.sastra@gmail.com", "Email", target: :__blank %>
+                  </p>
+                </div>
+              </li>
+            <% if @current_user %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= @current_user.name %>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <p>
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    <%= link_to "Exit", user_logout_url(id: @current_user.id), method: :delete %>
+                  </p>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+        <%= render partial: "users/msg" %>
+        <%= yield %>
+    </body>
       </html>

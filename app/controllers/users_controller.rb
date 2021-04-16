@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         @current_user = @user
         session[:current_user_id] = @user.id
         redirect_to(questions_path, notice: "Quiz has been started!")
-        @user.user_loged_in
+        @user.user_logged_in
       else
         flash[:error] = "Invalid password!"
         redirect_to root_path
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @current_user.user_loged_out
+    @current_user.user_logged_out
     session[:current_user_id] = nil
     @current_user = nil
     redirect_to(root_path, notice: "Logged out successfully!")
