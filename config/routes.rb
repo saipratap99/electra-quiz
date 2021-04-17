@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get "users/login", to: "users#new"
   post "users/login", to: "users#login", as: :user_login
   delete "users/logout/:id", to: "users#destroy", as: :user_logout
+  get "/quiz_details", to: "users#quiz_details", as: :quiz_details
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

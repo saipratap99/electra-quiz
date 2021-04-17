@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       if @user.password == password
         @current_user = @user
         session[:current_user_id] = @user.id
-        redirect_to(questions_path, notice: "Quiz has been started!")
+        redirect_to(quiz_details_path)
         @user.user_logged_in
       else
         flash[:error] = "Invalid password!"
@@ -42,5 +42,9 @@ class UsersController < ApplicationController
     ques_type = params[:ques_type]
     Question.create(question: question, ans: ans, ques_type: ques_type)
     redirect_to(question_path, notice: "Question added!")
+  end
+
+  def quiz_details
+    @user = User.find(@current_user.id)
   end
 end

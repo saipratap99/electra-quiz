@@ -1,0 +1,29 @@
+<div class="quiz-details">
+<h2> Participant Details</h2>
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">Name</th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Quiz Type</th>
+      <td>Technical</td>
+    </tr>
+    <tr>
+      <th scope="row">Level</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th scope="row">Duration</th>
+      <td>20 min</td>
+    </tr>
+    <tr>
+    </tr>
+  </tbody>
+</table>
+
+<p class="start-btn">
+  <%= link_to "Start", :questions %>
+</p>
+</div>
