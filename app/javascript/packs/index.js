@@ -22,6 +22,11 @@ $(document).ready(function () {
   let submit = document.querySelector('.submit');
   let skip = document.querySelector('.skip');
 
+  let hide_mesages = ()=>{
+    let msgs = document.querySelector(".all-messages");
+    msgs.style.visibility = 'hidden';
+  }
+
   // ajax request for submiting and fetching next question
   let sendResponse = (duration,params)=>{
     console.log(params);
@@ -33,6 +38,8 @@ $(document).ready(function () {
           document.querySelector('.submit').addEventListener('click',submitEvent);
           document.querySelector('.skip').addEventListener('click',skipEvent);
           startTimer(duration);
+          document.querySelector(".all-messages").style.visibility = 'visible';
+          setTimeout(hide_mesages,3000);
         },
       error: function(repsonse){console.log("error")}
     });

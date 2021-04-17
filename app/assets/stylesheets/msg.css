@@ -1,3 +1,6 @@
+.all-messages {
+  min-height: 60px;
+}
 .notice,
 .alert,
 #error_explanation {

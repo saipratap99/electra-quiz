@@ -28,6 +28,7 @@ class UserQuestionsController < ApplicationController
 
   def store_response
     option_id = params[:option].to_i
+    commit = params[:commit]
     questions_count = UserQuestion.all.count
     unattempted_questions = UserQuestion.where(is_attempted: false).order(:id)
     ques_remaining_count = unattempted_questions.count - 1
@@ -40,7 +41,7 @@ class UserQuestionsController < ApplicationController
     else
       @ques.option_id = option_id
     end
-
+    @response = commit == "submit" ? "Response submited!" : "Question skipped!"
     @ques.is_attempted = true
     @ques.save
 

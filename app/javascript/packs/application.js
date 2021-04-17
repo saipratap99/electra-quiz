@@ -17,4 +17,9 @@ require("channels");
 
 $(document).ready(function () {
   console.log("ready!");
+  let hide_mesages = ()=>{
+    let msgs = document.querySelector(".all-messages");
+    msgs.style.visibility = 'hidden';
+  }
+  setTimeout(hide_mesages,3000);
 });
