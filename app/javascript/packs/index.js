@@ -29,7 +29,6 @@ $(document).ready(function () {
 
   // ajax request for submiting and fetching next question
   let sendResponse = (duration,params)=>{
-    console.log(params);
     $.ajax({
       type: "POST",
       url: "/user_questions/send_response",
@@ -48,9 +47,12 @@ $(document).ready(function () {
   // function for submit event click
 
   let submitEvent = ()=>{
-    let params = $("form").serialize() + '&commit=submit';
-    clearInterval(countdown);
-    sendResponse(1*60,params);
+    let val = $("input[type='radio'][name='option']:checked").val();
+    if(val){
+      let params = $("form").serialize() + '&commit=submit';
+      clearInterval(countdown);
+      sendResponse(1*60,params);
+    }
   }
 
   let skipEvent = ()=>{

@@ -9,7 +9,7 @@
   <div class="score">
     <%= form_with(url: :submit, remote: true) do |form| %>
       <% question.question.options.each do |opt| %>
-        <%= form.radio_button :option, opt.id , class: 'options', id: opt.id %>
+        <%= form.radio_button :option, opt.id , class: 'options', id: opt.id, required: true %>
         <%= form.label opt.id.to_s.to_sym, opt.option %><br>
       <% end %>
       <br>

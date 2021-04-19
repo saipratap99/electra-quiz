@@ -1,5 +1,0 @@
-$("<%= "#q-#{@ques.id}" %>").css('opacity','0.6');
-$("<%= ".s-#{@ques.id}-#{@ques.scored}" %>").css('background-color','#50f150');
-<% for i in 1..10 %>
-  $("<%= ".s-#{@ques.id}-#{i}" %>").prop('disabled',true)
-<% end %>
