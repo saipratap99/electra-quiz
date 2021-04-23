@@ -57,10 +57,18 @@ $(document).ready(function () {
 
   let skipEvent = ()=>{
     let params = 'commit=skip';
-    console.log('skip');
+    removeRequired();
     clearInterval(countdown);
     sendResponse(1*60,params);
   }
+
+  let removeRequired = ()=>{
+    // un-require required fields for skip button
+    let items = [...document.getElementsByClassName('options')];
+    items.forEach((item)=>{
+      item.required = false;
+    });
+  };
 
   // countdown timer for question
   let startTimer = function(duration) {
