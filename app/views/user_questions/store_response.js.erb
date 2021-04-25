@@ -1,4 +1,4 @@
 
 $(".all-messages").html("<%= j (render partial: 'users/msg',
                                        locals: {notice: @response}) %>").hide().fadeIn(800);
-$("#allq").html("<%= j (render partial: 'question', locals: {question: UserQuestion.where(is_attempted: false).first,question_number: @question_number}) %>").hide().fadeIn(800)
+$("#allq").html("<%= j (render partial: 'question', locals: {question: @question,question_number: @question_number,has_image: @contains_image,image: @image}) %>").hide().fadeIn(800)

@@ -1,10 +1,10 @@
 class UserQuestion < ApplicationRecord
   belongs_to :question
 
-  def self.createQuestions
-    if UserQuestion.all.count == 0
+  def self.createQuestions(current_user)
+    if current_user.user_questions.all.count == 0
       Question.all.each do |ques|
-        UserQuestion.create({ question_id: ques.id })
+        current_user.user_questions.create({ question_id: ques.id })
       end
     else
       UserQuestion.all.each do |x|

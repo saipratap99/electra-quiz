@@ -3,5 +3,5 @@
   <%= "Level #{@question.question.level} - #{@question.question.ques_type.capitalize}" %>
 </h1>
 <div id="allq">
-  <%= render partial: "question", locals: {question: @question,question_number: @question_number} %>
+  <%= render partial: "question", locals: {question: @question,question_number: @question_number,has_image: @contains_image,image: @image} %>
 </div>

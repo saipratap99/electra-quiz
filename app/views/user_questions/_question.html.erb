@@ -5,12 +5,24 @@
   </div>
   <div class="ques">
     <p  id="ques"><%= question.question.question %></p>
+    <% if has_image %>
+      <img src=<%= image %> alt="Image" style="max-width: 200px;max-height: 200px;padding: 5px;" >
+    <% end %>
+
   </div>
   <div class="score">
     <%= form_with(url: :submit, remote: true) do |form| %>
       <% question.question.options.each do |opt| %>
-        <%= form.radio_button :option, opt.id , class: 'options', id: opt.id, required: true %>
-        <%= form.label opt.id.to_s.to_sym, opt.option %><br>
+        <p style="display: flex;align-items: center;">
+          <%= form.radio_button :option, opt.id , class: 'options', id: opt.id, required: true %>
+          <% if opt.contains_image %>
+            <label for=<%= opt.id.to_s %>>
+              <img src=<%= opt.image_url %> alt="Image" style="max-width: 100px;max-height: 100px;padding: 5px;" >
+            </label>
+          <% else %>
+            <%= form.label opt.id.to_s.to_sym, opt.option %><br>
+          <% end %>
+        </p>
       <% end %>
       <br>
       <%= form.button "Skip", class: "btn btn-secondary skip" %>
