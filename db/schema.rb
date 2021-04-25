@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_191738) do
+ActiveRecord::Schema.define(version: 2021_04_25_072840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,15 @@ ActiveRecord::Schema.define(version: 2021_04_15_191738) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "question_id", null: false
+    t.boolean "contains_image", default: false
+    t.string "image_url"
     t.index ["question_id"], name: "index_options_on_question_id"
+  end
+
+  create_table "question_images", force: :cascade do |t|
+    t.string "image_url"
+    t.bigint "question_id", null: false
+    t.index ["question_id"], name: "index_question_images_on_questions_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -32,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_191738) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "contains_image", default: false
   end
 
   create_table "user_questions", force: :cascade do |t|
@@ -62,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_191738) do
   end
 
   add_foreign_key "options", "questions"
+  add_foreign_key "question_images", "questions"
   add_foreign_key "user_questions", "options"
   add_foreign_key "user_questions", "questions"
 end
