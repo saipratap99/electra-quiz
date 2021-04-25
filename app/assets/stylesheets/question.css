@@ -1,0 +1,19 @@
+.new-question {
+  padding: 8px;
+  margin: 5px;
+}
+
+.new-question h2 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.addOptions {
+  padding: 8px;
+  margin: 5px;
+}
+
+.addOptions h3 {
+  font-size: 21px;
+  margin: 5px;
+}
