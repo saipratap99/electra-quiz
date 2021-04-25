@@ -1,4 +1,4 @@
-<div class="summary">
-  <h2>Thank you taking the quiz</h2>
-  <%= button_to "Logout" , user_logout_url(id: @current_user.id), method: :delete, controller:"users" %>
+<div class="summary" style="text-align: center">
+  <h2 class="secondary" style="font-size: 31px;color: cornflowerblue;">Thank you for taking the quiz!</h2>
+  <%= button_to "Logout" , user_logout_url(id: @current_user.id), method: :delete, controller:"users", class: "btn btn-secondary" %>
 </div>
