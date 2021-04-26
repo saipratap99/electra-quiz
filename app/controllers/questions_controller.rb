@@ -12,8 +12,8 @@ class QuestionsController < ApplicationController
     contains_image = params[:contains_image].to_i
     image_url = params[:image_url]
     count = params[:button].to_i
-    level = 1
-    ques_type = "tech"
+    level = params[:level].to_i
+    ques_type = params[:ques_type]
     if contains_image == 0
       ques = Question.create({ question: question, ques_type: ques_type, level: level })
     else

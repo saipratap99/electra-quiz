@@ -25,8 +25,8 @@
         </p>
       <% end %>
       <br>
-      <%= form.button "Skip", class: "btn btn-secondary skip" %>
-      <%= form.submit "Submit", class: "btn btn-primary submit" %>
+      <%= form.button "Skip", data: {"disable-with": "Loading.."}, class: "btn btn-secondary skip" %>
+      <%= form.submit "Submit",data: {"disable-with": "Please wait.."}, class: "btn btn-primary submit" %>
     <% end %>
   </div>
 </div>
