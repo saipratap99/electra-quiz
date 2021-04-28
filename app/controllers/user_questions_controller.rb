@@ -1,4 +1,23 @@
 class UserQuestionsController < ApplicationController
+  before_action :ensure_user_logged_in_given_slot, only: ["index"]
+
+  def ensure_user_logged_in_given_slot
+    user = User.find(@current_user.id)
+    # if user.started_at
+    #   quizzes_curr = Quiz.where("start_time <= ? AND end_time >= ?", DateTime.now, DateTime.now)
+    # else
+    #   quizzes_curr = Quiz.where("start_time <= ? AND closing_time >= ?", DateTime.now, DateTime.now)
+    # end
+    quizzes_curr = Quiz.where("start_time <= ? AND end_time >= ?", DateTime.now, DateTime.now).first
+
+    if quizzes_curr
+      # no redirection
+    else
+      # redirect
+      redirect_to :timings
+    end
+  end
+
   def index
     # @tech_questions = UserQuestion.getTechQuestions(@current_user)
     # @non_tech_questions = UserQuestion.getNonTechQuestions(@current_user)

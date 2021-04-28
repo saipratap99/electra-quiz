@@ -15,5 +15,6 @@ Rails.application.routes.draw do
 
   get "/questions/new", to: "questions#new", as: :new_question
   post "/questions/create", to: "questions#create", as: :create_question
+  get "/timings", to: "users#timings", as: :timings
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

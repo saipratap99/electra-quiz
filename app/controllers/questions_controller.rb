@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
       if (params[param_image].to_i == 0)
         ques.options.create({ option: params[param] })
       else
-        ques.options.create({ contains_image: true, image_url: params[param_image] })
+        ques.options.create({ contains_image: true, image_url: params[param] })
       end
     end
     redirect_to :new_question

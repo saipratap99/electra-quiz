@@ -1,5 +1,23 @@
 class UsersController < ApplicationController
   skip_before_action :ensure_user_logged_in, only: ["new", "login"]
+  before_action :ensure_user_logged_in_given_slot, only: ["quiz_details"]
+
+  def ensure_user_logged_in_given_slot
+    user = User.find(@current_user.id)
+    # if user.started_at
+    #   quizzes_curr = Quiz.where("start_time <= ? AND end_time >= ?", DateTime.now, DateTime.now)
+    # else
+    #   quizzes_curr = Quiz.where("start_time <= ? AND closing_time >= ?", DateTime.now, DateTime.now)
+    # end
+    quizzes_curr = Quiz.where("start_time <= ? AND end_time >= ?", DateTime.now, DateTime.now).first
+
+    if quizzes_curr
+      return true
+    else
+      # redirect
+      return false
+    end
+  end
 
   def index
   end
@@ -12,7 +30,12 @@ class UsersController < ApplicationController
       if @user.password == password
         @current_user = @user
         session[:current_user_id] = @user.id
-        redirect_to(quiz_details_path)
+
+        if ensure_user_logged_in_given_slot
+          redirect_to(quiz_details_path)
+        else
+          redirect_to :timings
+        end
         @user.user_logged_in
       else
         flash[:error] = "Invalid password!"
@@ -46,5 +69,8 @@ class UsersController < ApplicationController
 
   def quiz_details
     @user = User.find(@current_user.id)
+  end
+
+  def timings
   end
 end
