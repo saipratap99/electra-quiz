@@ -19,16 +19,16 @@ class UsersController < ApplicationController
     end
 
     if quiz
-      quiz_type = quiz.name == "Technical" ? "tech" : "non-tech"
-      level = quiz.level
-      if quiz_type == "tech"
-        if level == 1
+      @quiz_type = quiz.name == "Technical" ? "tech" : "non-tech"
+      @level = quiz.level
+      if @quiz_type == "tech"
+        if @level == 1
           user.tech_1_started_at = DateTime.now
         else
           user.tech_2_started_at = DateTime.now
         end
       else
-        if level == 1
+        if @level == 1
           user.non_tech_1_started_at = DateTime.now
         else
           user.non_tech_2_started_at = DateTime.now

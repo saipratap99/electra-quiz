@@ -8,11 +8,17 @@
     </tr>
     <tr>
       <th scope="row">Quiz Type</th>
-      <td>Technical</td>
+      <td>
+        <% if @quiz_type == "tech" %>
+          <%= "Technical" %>
+        <% else %>
+          <%= "Non-Technical" %>
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th scope="row">Level</th>
-      <td>1</td>
+      <td><%= @level %></td>
     </tr>
     <tr>
       <th scope="row">Duration</th>

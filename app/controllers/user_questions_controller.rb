@@ -18,16 +18,16 @@ class UserQuestionsController < ApplicationController
     end
 
     if quiz
-      quiz_type = quiz.name == "Technical" ? "tech" : "non-tech"
-      level = quiz.level
-      if quiz_type == "tech"
-        if level == 1
+      @quiz_type = quiz.name == "Technical" ? "tech" : "non-tech"
+      @level = quiz.level
+      if @quiz_type == "tech"
+        if @level == 1
           user.tech_1_started_at = DateTime.now
         else
           user.tech_2_started_at = DateTime.now
         end
       else
-        if level == 1
+        if @level == 1
           user.non_tech_1_started_at = DateTime.now
         else
           user.non_tech_2_started_at = DateTime.now
@@ -41,7 +41,7 @@ class UserQuestionsController < ApplicationController
   end
 
   def index
-    UserQuestion.createQuestions(@current_user)
+    UserQuestion.createQuestions(@current_user, @quiz_type, @level)
 
     @question = @current_user.user_questions.where(is_attempted: false).order(:id).first
     if @question
