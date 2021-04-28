@@ -1,4 +1,4 @@
 <div class="timings" style="text-align: center">
   <h2 class="secondary" style="font-size: 31px;color: cornflowerblue;">Please check the timings and login at given slot!</h2>
-  <%= button_to "Logout" , user_logout_url(id: @current_user.id), method: :delete, controller:"users", class: "btn btn-secondary" %>
+  <%= button_to "Logout" , user_logout_url(id: @current_user.id), method: :delete, controller:"users",data: {"disable-with": "Please wait.."},class: "btn btn-secondary" %>
 </div>

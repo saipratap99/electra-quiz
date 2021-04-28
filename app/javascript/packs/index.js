@@ -18,6 +18,17 @@
 $(document).ready(function () {
   console.log("ready!");
 
+  // setting localStorage
+  let duration;
+  if (localStorage.length === 0){
+    duration = 60;
+    localStorage.setItem("duration","60");
+  }else{
+    duration = localStorage.getItem("duration");
+  }
+
+  ///
+
   let countdown;
   let submit = document.querySelector('.submit');
   let skip = document.querySelector('.skip');
@@ -51,6 +62,8 @@ $(document).ready(function () {
     if(val){
       let params = $("form").serialize() + '&commit=submit';
       clearInterval(countdown);
+      // localStorage
+      localStorage.duration = 60
       sendResponse(1*60,params);
     }
   }
@@ -59,6 +72,8 @@ $(document).ready(function () {
     let params = 'commit=skip';
     removeRequired();
     clearInterval(countdown);
+    // localStorage
+    localStorage.duration = 60
     sendResponse(1*60,params);
   }
 
@@ -84,6 +99,10 @@ $(document).ready(function () {
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        // localStorage
+        localStorage.duration = seconds;
+
         if(seconds == 10){
           display.style.color = '#ea5151';
         }
@@ -91,7 +110,7 @@ $(document).ready(function () {
         if (--timer < 0) {
             let params = $("form").serialize();
             clearInterval(countdown);
-            sendResponse(duration,params);
+            sendResponse(60,params);
         }
     }, 1000);
   }
@@ -100,6 +119,6 @@ $(document).ready(function () {
   submit.addEventListener('click',submitEvent);
   skip.addEventListener('click',skipEvent);
 
-  startTimer(1*60);
+  startTimer(duration);
 
 });
