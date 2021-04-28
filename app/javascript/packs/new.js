@@ -7,6 +7,7 @@ $(document).ready(function () {
     let cbox = document.createElement("input");
     let cbox_hidden = document.createElement("input");
     let tbox = document.createElement("input");
+    let radio = document.createElement("input");
     let br = document.createElement("br");
 
     cbox.type = "checkbox";
@@ -18,6 +19,14 @@ $(document).ready(function () {
     tbox.type = "text";
     tbox.name = "opt" + count;
     tbox.placeholder = "Option or Image Url"
+    tbox.required = true
+
+    radio.type = "radio";
+    radio.value = "opt" + count;
+    radio.name = "option";
+
+
+    opts.appendChild(radio);
     opts.appendChild(cbox_hidden);
     opts.appendChild(cbox);
     opts.appendChild(tbox);

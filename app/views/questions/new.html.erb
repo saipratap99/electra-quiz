@@ -9,8 +9,9 @@
     <%= form.select :level, [1,2] %><br>
     <div class="addOptions">
       <h3>Options<h3>
+      <%= form.radio_button :option, "opt1" , class: 'options', required: true %>
       <%= form.check_box :opt1_image %>
-      <%= form.text_field :opt1, placeholder: "Option or Image Url" %><br>
+      <%= form.text_field :opt1, placeholder: "Option or Image Url", required: true %><br>
     </div>
     <%= form.button "Add option", class: "addOption", type: "button" %><br>
     <%= form.submit "Add Question" %>
