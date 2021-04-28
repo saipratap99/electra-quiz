@@ -19,17 +19,16 @@ class UserQuestionsController < ApplicationController
   end
 
   def index
-    # @tech_questions = UserQuestion.getTechQuestions(@current_user)
-    # @non_tech_questions = UserQuestion.getNonTechQuestions(@current_user)
-    ## @questions = @current_user.user_questions.order(id: :asc)
     UserQuestion.createQuestions(@current_user)
 
     @question = @current_user.user_questions.where(is_attempted: false).order(:id).first
-    @contains_image = false
-    @image = nil
-    if @question.question.contains_image
-      @contains_image = true
-      @image = @question.question.question_images.first.image_url
+    if @question
+      @contains_image = false
+      @image = nil
+      if @question.question.contains_image
+        @contains_image = true
+        @image = @question.question.question_images.first.image_url
+      end
     end
     questions_count = @current_user.user_questions.all.count
     ques_remaining_count = @current_user.user_questions.where(is_attempted: false).count - 1
@@ -93,5 +92,10 @@ class UserQuestionsController < ApplicationController
 
   def submit
     render js: "console.log('submited');"
+  end
+
+  def get_questions
+    UserQuestion.createQuestionsAgain(@current_user)
+    redirect_to root_path
   end
 end

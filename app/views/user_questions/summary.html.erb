@@ -1,4 +1,7 @@
 <div class="summary" style="text-align: center">
   <h2 class="secondary" style="font-size: 31px;color: cornflowerblue;">Thank you for taking the quiz!</h2>
   <%= button_to "Logout" , user_logout_url(id: @current_user.id), method: :delete, controller:"users",data: {"disable-with": "Please wait.."},class: "btn btn-secondary" %>
+
+  <%= link_to "Get Questions" ,:get_questions, data: {"disable-with": "Please wait.."},class: "btn btn-secondary" %>
+
 </div>

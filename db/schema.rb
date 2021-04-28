@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_180059) do
+ActiveRecord::Schema.define(version: 2021_04_28_075409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_04_26_180059) do
     t.datetime "closing_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "total_questions", default: 0
   end
 
   create_table "user_questions", force: :cascade do |t|
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 2021_04_26_180059) do
     t.bigint "option_id"
     t.bigint "question_id", null: false
     t.bigint "user_id", null: false
+    t.integer "scored", default: 0
     t.index ["option_id"], name: "index_user_questions_on_option_id"
     t.index ["question_id"], name: "index_user_questions_on_question_id"
     t.index ["user_id"], name: "index_user_questions_on_user_id"
@@ -80,6 +82,14 @@ ActiveRecord::Schema.define(version: 2021_04_26_180059) do
     t.datetime "last_sign_in_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "tech_1_started_at"
+    t.datetime "tech_2_started_at"
+    t.datetime "non_tech_1_started_at"
+    t.datetime "non_tech_2_started_at"
+    t.integer "tech_1_score", default: 0
+    t.integer "tech_2_score", default: 0
+    t.integer "non_tech_1_score", default: 0
+    t.integer "non_tech_2_score", default: 0
   end
 
   add_foreign_key "options", "questions"

@@ -6,11 +6,13 @@ class UserQuestion < ApplicationRecord
       Question.all.each do |ques|
         current_user.user_questions.create({ question_id: ques.id })
       end
-    else
-      UserQuestion.all.each do |x|
-        x.is_attempted = false
-        x.save!
-      end
+    end
+  end
+
+  def self.createQuestionsAgain(current_user)
+    current_user.user_questions.all.each do |ques|
+      ques.is_attempted = false
+      ques.save!
     end
   end
 end
