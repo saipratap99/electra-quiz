@@ -22,4 +22,14 @@ $(document).ready(function () {
     msgs.style.visibility = 'hidden';
   }
   setTimeout(hide_mesages,3000);
+
+  let show_password = document.querySelector("#show");
+  show_password.checked = false;
+  let pass = document.querySelector("#password");
+  show_password.addEventListener('click',()=>{
+    if(show_password.checked)
+      pass.type = "text";
+    else
+      pass.type = "password";
+  });
 });

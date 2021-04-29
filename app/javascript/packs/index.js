@@ -91,9 +91,9 @@ $(document).ready(function () {
   // countdown timer for question
   let startTimer = function(duration) {
 
-    display = document.querySelector('#time');
+    let display = document.querySelector('#time');
     if(display == null){
-      console.log("Null");
+      console.log("null");
       return null;
     }
     var timer = duration;

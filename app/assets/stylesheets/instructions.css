@@ -18,7 +18,7 @@
 .instructions div ol {
   margin: 15px;
   padding: 5px;
-  list-style: number;
+  list-style: decimal;
 }
 
 .instructions div ol li {

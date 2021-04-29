@@ -13,6 +13,10 @@
                           autofocus:"autofocus"
     %>
     <br>
+    <p class="show-password">
+      <input name="show" id="show" type="checkbox">
+      <label for="show">Show password</label>
+    </p>
     <%= form.submit "LogIn",data: { "disable-with": "Please wait..." }, class: "signUp-button"%>
   <%end%>
 </main>
