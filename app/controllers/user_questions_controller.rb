@@ -70,6 +70,10 @@ class UserQuestionsController < ApplicationController
       respond_to do |format|
         format.js
       end
+    else
+      set_attr = "@current_user.#{@quiz_type}_#{@level}_started_at = nil"
+      eval(set_attr)
+      @current_user.save!
     end
   end
 
