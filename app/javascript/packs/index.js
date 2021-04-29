@@ -51,7 +51,10 @@ $(document).ready(function () {
           document.querySelector(".all-messages").style.visibility = 'visible';
           setTimeout(hide_mesages,3000);
         },
-      error: function(repsonse){console.log("error")}
+      error: function(repsonse){
+        console.log("error");
+        localStorage.duration = "60";
+      }
     });
   };
 
@@ -63,7 +66,7 @@ $(document).ready(function () {
       let params = $("form").serialize() + '&commit=submit';
       clearInterval(countdown);
       // localStorage
-      localStorage.duration = 60
+      localStorage.duration = "60"
       sendResponse(1*60,params);
     }
   }
@@ -73,7 +76,7 @@ $(document).ready(function () {
     removeRequired();
     clearInterval(countdown);
     // localStorage
-    localStorage.duration = 60
+    localStorage.duration = "60"
     sendResponse(1*60,params);
   }
 
@@ -90,6 +93,7 @@ $(document).ready(function () {
 
     display = document.querySelector('#time');
     if(display == null){
+      console.log("Null");
       return null;
     }
     var timer = duration;

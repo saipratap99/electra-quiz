@@ -1,0 +1,40 @@
+.instructions {
+  padding: 10px;
+}
+
+.instructions h1 {
+  padding: 5px;
+  margin: 8px;
+  text-align: center;
+  font-size: 28px;
+}
+
+.instructions div h2 {
+  font-size: 21px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.instructions div ol {
+  margin: 15px;
+  padding: 5px;
+  list-style: number;
+}
+
+.instructions div ol li {
+  padding: 5px;
+}
+
+.next-btn {
+  padding: 5px;
+  margin: 8px;
+  text-align: center;
+}
+
+.next-btn a {
+  padding: 8px;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 3px;
+  color: white;
+}

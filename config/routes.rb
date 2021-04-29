@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "/questions/new", to: "questions#new", as: :new_question
   post "/questions/create", to: "questions#create", as: :create_question
   get "/timings", to: "users#timings", as: :timings
+  get "/instructions", to: "users#instructions", as: :instructions
 
   # route to get guestions again
   get "/get_questions", to: "user_questions#get_questions", as: :get_questions

@@ -1,63 +1,26 @@
 class UserQuestionsController < ApplicationController
-  before_action :ensure_user_logged_in_given_slot, only: ["index"]
+  def index
+    if ensure_user_logged_in_given_slot
+      UserQuestion.createQuestions(@current_user, @quiz_type, @level)
 
-  def ensure_user_logged_in_given_slot
-    user = User.find(@current_user.id)
-    if user.tech_1_started_at || user.tech_2_started_at || user.non_tech_1_started_at || user.non_tech_2_started_at
-      quizzes_curr = Quiz.where("start_time <= ? AND end_time >= ?", DateTime.now, DateTime.now)
-    else
-      quizzes_curr = Quiz.where("start_time <= ? AND closing_time >= ?", DateTime.now, DateTime.now)
-    end
-
-    if user.appears_for == "tech"
-      quiz = quizzes_curr.where(name: "Technical").first if !quizzes_curr.empty?
-    elsif user.appears_for == "non-tech"
-      quiz = quizzes_curr.where(name: "Non Technical").first if !quizzes_curr.empty?
-    else
-      quiz = quizzes_curr.first if !quizzes_curr.empty?
-    end
-
-    if quiz
-      @quiz_type = quiz.name == "Technical" ? "tech" : "non-tech"
-      @level = quiz.level
-      if @quiz_type == "tech"
-        if @level == 1
-          user.tech_1_started_at = DateTime.now
-        else
-          user.tech_2_started_at = DateTime.now
-        end
-      else
-        if @level == 1
-          user.non_tech_1_started_at = DateTime.now
-        else
-          user.non_tech_2_started_at = DateTime.now
+      @question = @current_user.user_questions.where("is_attempted = ? AND ques_type = ? AND level = ?", false, @quiz_type, @level).order(:id).first
+      if @question
+        @contains_image = false
+        @image = nil
+        if @question.question.contains_image
+          @contains_image = true
+          @image = @question.question.question_images.first.image_url
         end
       end
-      user.save!
+      questions_count = @current_user.user_questions.where("ques_type = ? AND level = ?", @quiz_type, @level).count
+      ques_remaining_count = @current_user.user_questions.where("is_attempted = ? AND ques_type = ? AND level = ?", false, @quiz_type, @level).count - 1
+
+      @question_number = "Question: #{questions_count - ques_remaining_count}/#{questions_count}"
+
+      redirect_to :summary if @question == nil
     else
-      # redirect
       redirect_to :timings
     end
-  end
-
-  def index
-    UserQuestion.createQuestions(@current_user, @quiz_type, @level)
-
-    @question = @current_user.user_questions.where(is_attempted: false).order(:id).first
-    if @question
-      @contains_image = false
-      @image = nil
-      if @question.question.contains_image
-        @contains_image = true
-        @image = @question.question.question_images.first.image_url
-      end
-    end
-    questions_count = @current_user.user_questions.all.count
-    ques_remaining_count = @current_user.user_questions.where(is_attempted: false).count - 1
-
-    @question_number = "Question: #{questions_count - ques_remaining_count}/#{questions_count}"
-
-    redirect_to :summary if @question == nil
   end
 
   def save_score
@@ -73,10 +36,12 @@ class UserQuestionsController < ApplicationController
   end
 
   def store_response
+    ensure_user_logged_in_given_slot
     option_id = params[:option].to_i
     commit = params[:commit]
-    questions_count = @current_user.user_questions.all.count
-    unattempted_questions = @current_user.user_questions.where(is_attempted: false).order(:id)
+    questions_count = @current_user.user_questions.where("ques_type = ? AND level = ?", @quiz_type, @level).count
+
+    unattempted_questions = @current_user.user_questions.where("is_attempted = ? AND ques_type = ? AND level = ?", false, @quiz_type, @level).order(:id)
     ques_remaining_count = unattempted_questions.count - 1
 
     @ques = unattempted_questions.first
@@ -93,7 +58,7 @@ class UserQuestionsController < ApplicationController
 
     if ques_remaining_count != 0
       # new question
-      @question = @current_user.user_questions.where(is_attempted: false).order(:id).first
+      @question = @current_user.user_questions.where("is_attempted = ? AND ques_type = ? AND level = ?", false, @quiz_type, @level).order(:id).first
       @contains_image = false
       @image = nil
       if @question.question.contains_image

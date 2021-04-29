@@ -1,46 +1,5 @@
 class UsersController < ApplicationController
   skip_before_action :ensure_user_logged_in, only: ["new", "login"]
-  before_action :ensure_user_logged_in_given_slot, only: ["quiz_details"]
-
-  def ensure_user_logged_in_given_slot
-    user = User.find(@current_user.id)
-    if user.tech_1_started_at || user.tech_2_started_at || user.non_tech_1_started_at || user.non_tech_2_started_at
-      quizzes_curr = Quiz.where("start_time <= ? AND end_time >= ?", DateTime.now, DateTime.now)
-    else
-      quizzes_curr = Quiz.where("start_time <= ? AND  closing_time >= ?", DateTime.now, DateTime.now)
-    end
-
-    if user.appears_for == "tech"
-      quiz = quizzes_curr.where(name: "Technical").first if !quizzes_curr.empty?
-    elsif user.appears_for == "non-tech"
-      quiz = quizzes_curr.where(name: "Non Technical").first if !quizzes_curr.empty?
-    else
-      quiz = quizzes_curr.first if !quizzes_curr.empty?
-    end
-
-    if quiz
-      @quiz_type = quiz.name == "Technical" ? "tech" : "non-tech"
-      @level = quiz.level
-      if @quiz_type == "tech"
-        if @level == 1
-          user.tech_1_started_at = DateTime.now
-        else
-          user.tech_2_started_at = DateTime.now
-        end
-      else
-        if @level == 1
-          user.non_tech_1_started_at = DateTime.now
-        else
-          user.non_tech_2_started_at = DateTime.now
-        end
-      end
-      user.save!
-      return true
-    else
-      # redirect
-      return false
-    end
-  end
 
   def index
   end
@@ -53,12 +12,7 @@ class UsersController < ApplicationController
       if @user.password == password
         @current_user = @user
         session[:current_user_id] = @user.id
-
-        if ensure_user_logged_in_given_slot
-          redirect_to(quiz_details_path)
-        else
-          redirect_to :timings
-        end
+        redirect_to :instructions
         @user.user_logged_in
       else
         flash[:error] = "Invalid password!"
@@ -91,9 +45,20 @@ class UsersController < ApplicationController
   end
 
   def quiz_details
-    @user = User.find(@current_user.id)
+    if ensure_user_logged_in_given_slot
+      @user = User.find(@current_user.id)
+    else
+      redirect_to :timings
+    end
   end
 
   def timings
+  end
+
+  def instructions
+    if ensure_user_logged_in_given_slot
+    else
+      redirect_to :timings
+    end
   end
 end
