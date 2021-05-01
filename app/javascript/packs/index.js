@@ -92,12 +92,11 @@ $(document).ready(function () {
   let startTimer = function(duration) {
 
     let display = document.querySelector('#time');
-    if(display == null){
-      console.log("null");
-      return null;
-    }
     var timer = duration;
     countdown = setInterval(function () {
+        if(document.querySelector("#time") == null){
+          localStorage.clear();
+        }
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
@@ -105,8 +104,9 @@ $(document).ready(function () {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         // localStorage
-        localStorage.duration = seconds;
-
+        if(localStorage.length != 0){
+          localStorage.duration = seconds;
+        }
         if(seconds == 10){
           display.style.color = '#ea5151';
         }
