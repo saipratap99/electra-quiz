@@ -25,14 +25,12 @@ $(document).ready(function () {
 
   let show_password = document.querySelector("#show");
   let pass = document.querySelector("#password");
-  try{
-    show_password.checked = false;
-    show_password.addEventListener('click',()=>{
-      if(show_password.checked)
-        pass.type = "text";
-      else
-        pass.type = "password";
-    });
-  }catch(e){}
+  show_password.checked = false;
+  show_password.addEventListener('click',()=>{
+    if(show_password.checked)
+      pass.type = "text";
+    else
+      pass.type = "password";
+  });
 
 });

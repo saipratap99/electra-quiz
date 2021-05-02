@@ -27,6 +27,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    feedback = params[:feedback]
+    if (feedback)
+      @current_user.feedback = feedback
+      @current_user.save!
+    end
     @current_user.user_logged_out
     session[:current_user_id] = nil
     @current_user = nil
