@@ -41,4 +41,9 @@ class User < ApplicationRecord
       user.save
     end
   end
+
+  def generate_password
+    self.password = "Brainiac@" + self.id.to_s
+    self.save!
+  end
 end

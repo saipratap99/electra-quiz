@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   # route to get guestions again
   get "/get_questions", to: "user_questions#get_questions", as: :get_questions
 
+  post "/send_examination_details", to: "users#send_examination_details", as: :send_examination_details
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

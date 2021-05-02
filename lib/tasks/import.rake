@@ -6,7 +6,9 @@ namespace :import do
   task users: :environment do
     file = Rails.root.join("lib/assets/brainiac.csv")
     CSV.foreach(file, :headers => true) do |row|
-      User.create(row.to_hash)
+      u = User.create(row.to_hash)
+      u.password = "Brainiac@" + u.id.to_s
+      u.save!
     end
   end
 end

@@ -66,4 +66,24 @@ class UsersController < ApplicationController
       redirect_to :timings
     end
   end
+
+  def send_examination_details
+    users = User.where(password_sent_at: nil)
+    users.each do |user|
+      if user.appears_for == "tech"
+        UserMailer.with(user: user).send_examination_details_tech.deliver_now
+        user.password_sent_at = DateTime.now
+        user.save!
+      elsif user.appears_for == "non-tech"
+        UserMailer.with(user: user).send_examination_details_non_tech.deliver_now
+        user.password_sent_at = DateTime.now
+        user.save!
+      else
+        UserMailer.with(user: user).send_examination_details_both.deliver_now
+        user.password_sent_at = DateTime.now
+        user.save!
+      end
+    end
+    redirect_to :new_question
+  end
 end
