@@ -2,7 +2,7 @@
 <div class="container new-question">
   <h2>New Question</h2>
   <%= form_with(url: :create_question) do |form| %>
-    <%= form.text_area :question, size: "80x6", required: true, placeholder: "Type Question here" %>
+    <%= form.text_area :question, required: true, placeholder: "Type Question here", style: "width: 95%;height: 80px" %>
     <p class="ques-image">
       <%= form.check_box :contains_image %>
       <%= form.label :contains_image, "Contains image" %>
@@ -11,7 +11,7 @@
     <%= form.select :ques_type, ["tech","non-tech"] %>
     <%= form.select :level, [1,2] %><br>
     <div class="addOptions">
-      <h3>Options<h3><br>
+      <h3>Options</h3><br>
       <table>
         <tr>
           <th>Select option</th>

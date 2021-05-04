@@ -29,12 +29,19 @@ th {
   text-align: center;
   height: 40px;
   vertical-align: middle;
-  padding: 8px;
+  padding: 0 15px;
   border-bottom: 1px solid #ddd;
 }
 
 table {
-  width: 100%;
-  padding: 8px;
-  margin: 5px;
+  padding: 2px;
+  margin: 2px;
+}
+
+table tr td input[type="text"] {
+  width: 150px;
+}
+
+table tr th {
+  padding: 0 15px;
 }
