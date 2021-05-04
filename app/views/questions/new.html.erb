@@ -2,19 +2,32 @@
 <div class="container new-question">
   <h2>New Question</h2>
   <%= form_with(url: :create_question) do |form| %>
-    <%= form.text_area :question, size: "70x5", required: true, placeholder: "Type Question here" %><br>
-    <%= form.check_box :contains_image %>
-    <%= form.text_field :image_url, placeholder: "Image Url" %><br>
+    <%= form.text_area :question, size: "80x6", required: true, placeholder: "Type Question here" %>
+    <p class="ques-image">
+      <%= form.check_box :contains_image %>
+      <%= form.label :contains_image, "Contains image" %>
+      <%= form.text_field :image_url, placeholder: "Image Url if it contains image" %>
+    </p>
     <%= form.select :ques_type, ["tech","non-tech"] %>
     <%= form.select :level, [1,2] %><br>
     <div class="addOptions">
-      <h3>Options<h3>
-      <%= form.radio_button :option, "opt1" , class: 'options', required: true %>
-      <%= form.check_box :opt1_image %>
-      <%= form.text_field :opt1, placeholder: "Option or Image Url", required: true %><br>
+      <h3>Options<h3><br>
+      <table>
+        <tr>
+          <th>Select option</th>
+          <th>Contains Image</th>
+          <th>Option/URL</th>
+        </tr>
+        <tr>
+          <td><%= form.radio_button :option, "opt1" , class: 'options', required: true %></td>
+          <td><%= form.check_box :opt1_image %></td>
+          <td><%= form.text_field :opt1, placeholder: "Option or Image Url", required: true %><br></td>
+        </tr>
+      </table>
+
     </div>
-    <%= form.button "Add option", class: "addOption", type: "button" %><br>
-    <%= form.submit "Add Question" %>
+    <%= form.button "Add another option", type: "button",class: "addOption btn btn-secondary"%><br><br>
+    <%= form.submit "Add Question", class: "btn btn-primary" %>
   <% end %>
 <br><br>
 <%= button_to "Send details", :send_examination_details %>

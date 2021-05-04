@@ -3,7 +3,13 @@ $(document).ready(function () {
   let count = 2
 
   let addOption = ()=>{
-    let opts = document.querySelector(".addOptions");
+    let opts = document.querySelector("table");
+    let row = opts.insertRow(count);
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+
+
     let cbox = document.createElement("input");
     let cbox_hidden = document.createElement("input");
     let tbox = document.createElement("input");
@@ -26,11 +32,10 @@ $(document).ready(function () {
     radio.name = "option";
 
 
-    opts.appendChild(radio);
-    opts.appendChild(cbox_hidden);
-    opts.appendChild(cbox);
-    opts.appendChild(tbox);
-    opts.appendChild(br);
+    cell1.appendChild(radio);
+    cell2.appendChild(cbox_hidden);
+    cell2.appendChild(cbox);
+    cell3.appendChild(tbox);
 
     document.querySelector(".addOption").value = count;
     count++;
