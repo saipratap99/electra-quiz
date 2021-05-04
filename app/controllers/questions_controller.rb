@@ -1,7 +1,18 @@
 class QuestionsController < ApplicationController
-  skip_before_action :ensure_user_logged_in
+  # skip_before_action :ensure_user_logged_in
+  before_action :ensure_user_is_admin
+
+  def ensure_user_is_admin
+    ensure_user_logged_in
+    if current_user.role != "admin"
+      redirect_to(root_path, alert: "You're not allowed to access!")
+    end
+  end
 
   def index
+    level = params[:level] == nil ? 1 : params[:level].to_i
+    type = params[:type] == nil ? "tech" : params[:type]
+    @questions = Question.where("ques_type = ? AND level = ?", type, level)
   end
 
   def new

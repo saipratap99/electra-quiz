@@ -1,0 +1,23 @@
+<div style="text-align:end;">
+  <%= form_tag :all_questions ,method: :get do %>
+    <%= select_tag :type,  options_for_select(["tech","non-tech"]) %>
+    <%= select_tag :level, options_for_select([1,2]) %>
+    <%= submit_tag "Get", class: "btn btn-secondary" %>
+  <% end %>
+</div>
+<h1 class="main-head primary-text text-center font-weight-bold text-primary">
+  <% if @questions.first %>
+    <%= "Level #{@questions.first.level } - #{@questions.first.ques_type.capitalize}" %>
+  <% else %>
+    <%= "No Questions" %>
+  <% end %>
+</h1>
+<div id="allq">
+  <% @questions.each do |q| %>
+    <% image = "" %>
+    <% if q.question_images.first %>
+      <% image = q.question_images.first.image_url %>
+    <% end %>
+    <%= render partial: "ques", locals: {question: q,has_image: q.contains_image,image: image} %>
+  <% end %>
+</div>

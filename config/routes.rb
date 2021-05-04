@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/quiz_details", to: "users#quiz_details", as: :quiz_details
 
   get "/questions/new", to: "questions#new", as: :new_question
+  get "/questions/index", to: "questions#index", as: :all_questions
   post "/questions/create", to: "questions#create", as: :create_question
   get "/timings", to: "users#timings", as: :timings
   get "/instructions", to: "users#instructions", as: :instructions
