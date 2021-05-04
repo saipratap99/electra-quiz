@@ -4,7 +4,7 @@
     <span id="time">Time Left: 01:00 </span>
   </div>
   <div class="ques">
-    <p  id="ques"><%= question.question.question %></p>
+    <p  id="ques"><%= question.question.question.gsub("\n",'<br>').html_safe %></p>
     <% if has_image %>
       <img src=<%= image %> alt="Image" style="max-width: 200px;max-height: 200px;padding: 5px;" >
     <% end %>
@@ -25,7 +25,7 @@
         </p>
       <% end %>
       <br>
-      <%= form.button "Skip", data: {"disable-with": "Loading.."}, class: "btn btn-secondary skip", type: "button" %>
+      <%= form.button "Skip", data: {"disable-with": "Loading.."}, class: "btn btn-secondary skip" %>
       <%= form.submit "Submit",data: {"disable-with": "Please wait.."}, class: "btn btn-primary submit" %>
     <% end %>
   </div>
