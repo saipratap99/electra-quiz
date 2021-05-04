@@ -71,7 +71,11 @@ class UserQuestionsController < ApplicationController
         format.js
       end
     else
-      set_attr = "@current_user.#{@quiz_type}_#{@level}_started_at = nil"
+      if (@quiz_type == "tech")
+        set_attr = "@current_user.#{@quiz_type}_#{@level}_started_at = nil"
+      else
+        set_attr = "@current_user.non_tech_#{@level}_started_at = nil"
+      end
       eval(set_attr)
       @current_user.save!
     end
