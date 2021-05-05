@@ -4,13 +4,12 @@
     <span id="time">Time Left: 01:00 </span>
   </div>
   <div class="ques">
-    <p  id="ques"><%= question.question.question.gsub("\n",'<br>').html_safe %></p>
+    <p id="ques"><%= question.question.question.gsub("\n",'<br>').html_safe %></p>
     <% if has_image %>
       <img src=<%= image %> alt="Image" style="max-width: 200px;max-height: 200px;padding: 5px;" >
     <% end %>
-
   </div>
-  <div class="score">
+  <div class="score opts">
     <%= form_with(url: :submit, remote: true) do |form| %>
       <% question.question.options.each do |opt| %>
         <p style="display: flex;align-items: center;">

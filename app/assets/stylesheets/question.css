@@ -45,3 +45,12 @@ table tr td input[type="text"] {
 table tr th {
   padding: 0 15px;
 }
+
+#ques {
+  line-height: 1.25;
+}
+.opts p label {
+  font-size: 16px;
+  padding: 2px;
+  margin: 3px;
+}
