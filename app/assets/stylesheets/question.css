@@ -48,9 +48,25 @@ table tr th {
 
 #ques {
   line-height: 1.25;
+  user-select: none;
+}
+
+.opts {
+  user-select: none;
 }
 .opts p label {
   font-size: 16px;
   padding: 2px;
   margin: 3px;
+  user-select: none;
+}
+
+.developed {
+  position: fixed;
+  right: 5px;
+  bottom: 6px;
+  padding: 5px;
+  color: #242424;
+  line-height: 1.4;
+  font-size: 14px;
 }

@@ -2,7 +2,7 @@
   <h2 class="secondary" style="font-size: 31px;color: cornflowerblue;">Thank you for taking the quiz!</h2>
 
   <%= form_with(url: user_logout_url(id: @current_user.id), method: :delete,remote: false) do |form| %>
-    <%= form.text_area :feedback, size: "50x5", placeholder: "Please mention here, if you have faced any problem during sample test",required: true, style: "margin: 8px;" %><br>
+    <%= form.text_area :feedback, size: "50x5", placeholder: "Please drop your feedback here!",required: true, style: "margin: 8px;" %><br>
     <%= form.submit "Submit and Logout",data: {"disable-with": "Please wait.."},class: "btn btn-secondary" %>
   <% end %>
 

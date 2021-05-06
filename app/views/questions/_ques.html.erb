@@ -2,7 +2,7 @@
   <div class="ques">
     <p id="ques"><%= question.question.gsub("\n",'<br>').html_safe %></p>
     <% if has_image %>
-      <img src=<%= image %> alt="Image" style="max-width: 200px;max-height: 200px;padding: 5px;" >
+      <img src=<%= image %> alt="Image" style="max-width: 300px;max-height: 400px;padding: 5px;" >
     <% end %>
   </div>
   <div class="opts">
@@ -15,7 +15,7 @@
         <% end %>
         <% if opt.contains_image %>
           <label for=<%= opt.id.to_s %>>
-            <img src=<%= opt.image_url %> alt="Image" style="max-width: 100px;max-height: 100px;padding: 5px;" >
+            <img src=<%= opt.image_url %> alt="Image" style="max-width: 200px;max-height: 200px;padding: 5px;" >
           </label>
         <% else %>
           <%= label opt.id.to_s.to_sym, opt.option %><br>
