@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_043133) do
+ActiveRecord::Schema.define(version: 2021_05_07_184230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,8 @@ ActiveRecord::Schema.define(version: 2021_05_02_043133) do
     t.integer "tech_2_score", default: 0
     t.integer "non_tech_1_score", default: 0
     t.integer "non_tech_2_score", default: 0
-    t.string "feedback"
+    t.string "feedback1"
+    t.string "feedback2"
   end
 
   add_foreign_key "options", "questions"
