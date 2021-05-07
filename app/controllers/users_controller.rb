@@ -79,7 +79,7 @@ class UsersController < ApplicationController
         user.password_sent_at = DateTime.now
         user.save!
       else
-        UserMailer.with(user: user).send_examination_details_tech.deliver_now
+        UserMailer.with(user: user).send_examination_details_non_tech.deliver_now
         user.password_sent_at = DateTime.now
         user.save!
       end
