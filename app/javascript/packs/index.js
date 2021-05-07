@@ -95,7 +95,7 @@ $(document).ready(function () {
     var timer = duration;
     countdown = setInterval(function () {
         if(document.querySelector("#time") == null){
-          localStorage.clear();
+          clearInterval(countdown);
         }
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);

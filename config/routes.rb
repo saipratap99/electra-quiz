@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "user_questions/summary", to: "user_questions#summary", as: :summary
   post "user_questions/submit", to: "user_questions#submit", as: :submit
   root to: "users#new"
-  get "users/login", to: "users#new"
+  get "users/login", to: "users#new", as: :login
   post "users/login", to: "users#login", as: :user_login
   delete "users/logout/:id", to: "users#destroy", as: :user_logout
   get "/quiz_details", to: "users#quiz_details", as: :quiz_details
@@ -23,6 +23,5 @@ Rails.application.routes.draw do
   get "/get_questions", to: "user_questions#get_questions", as: :get_questions
 
   post "/send_examination_details", to: "users#send_examination_details", as: :send_examination_details
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
