@@ -24,7 +24,14 @@ $(document).ready(function () {
     duration = 60;
     localStorage.setItem("duration","60");
   }else{
-    duration = localStorage.getItem("duration");
+    if(parseInt(localStorage.duration) > 0){
+      duration = localStorage.getItem("duration");
+    }
+    else{
+      duration = 60;
+      localStorage.setItem("duration","60");
+    }
+
   }
 
   ///
@@ -66,7 +73,7 @@ $(document).ready(function () {
       let params = $("form").serialize() + '&commit=submit';
       clearInterval(countdown);
       // localStorage
-      localStorage.duration = "60"
+      localStorage.duration = 60
       sendResponse(1*60,params);
     }
   }
@@ -76,7 +83,7 @@ $(document).ready(function () {
     removeRequired();
     clearInterval(countdown);
     // localStorage
-    localStorage.duration = "60"
+    localStorage.duration = 60
     sendResponse(1*60,params);
   }
 
@@ -124,5 +131,10 @@ $(document).ready(function () {
   skip.addEventListener('click',skipEvent);
 
   startTimer(duration);
+
+  let cleanUp = ()=>{
+    console.log("cleared");
+    localStorage.clear();
+  }
 
 });

@@ -30,6 +30,10 @@
 </table>
 
 <p class="start-btn">
-  <%= link_to "Start", :questions, data: {"disable-with": "Please wait.."} %>
+  <% if @user.user_questions.where("ques_type = ? AND level = ? AND is_attempted = ?",@quiz_type,@level,true).count == 0 %>
+    <%= link_to "Start", :questions, data: {"disable-with": "Please wait.."}, onclick: 'localStorage.clear()' %>
+  <% else %>
+    <%= link_to "Start", :questions, data: {"disable-with": "Please wait.."} %>
+  <% end %>
 </p>
 </div>

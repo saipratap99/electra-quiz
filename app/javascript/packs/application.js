@@ -33,4 +33,9 @@ $(document).ready(function () {
       pass.type = "password";
   });
 
+  let cleanUp = ()=>{
+    console.log("cleared");
+    localStorage.clear();
+  }
+
 });
