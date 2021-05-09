@@ -30,6 +30,10 @@
     <%= form.submit "Add Question", class: "btn btn-primary" %>
   <% end %>
 <br><br>
-<%= button_to "Send details", :send_examination_details %>
+<%= button_to "Send details", :send_examination_details, hidden: true %>
+<p  style="padding: 5px;margin: 5px">
+  <%= link_to "Scores", :scores, class: "btn btn-secondary", style: "margin: 5px;" %>
+  <%= link_to "Overall scores", :overall, class: "btn btn-secondary", style: "margin: 5px;" %>
+</p>
 <%= link_to "All Questions", :all_questions, class: "btn btn-secondary" %>
 </div>

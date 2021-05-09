@@ -86,4 +86,17 @@ class UsersController < ApplicationController
     end
     redirect_to :new_question
   end
+
+  def calculate_scores
+    User.calculate_scores
+    redirect_to :scores
+  end
+
+  def scores
+    @users = User.all
+  end
+
+  def overall
+    @users = User.all
+  end
 end

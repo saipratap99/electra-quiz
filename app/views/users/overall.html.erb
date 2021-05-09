@@ -1,0 +1,28 @@
+<div class="row performance">
+  <div class="col-lg-6 col-md-6 col-12 over-all">
+    <h1 class="main-head primary-text text-left font-weight-bold text-primary">Technical</h1>
+    <% @users.order(tech_score: :desc).each do |user| %>
+      <div class="each-category" <%= user.current_sign_in_at == nil ? 'style=color:#f07272' : '' %>>
+        <div class="col-lg-8">
+          <%= user.name %>
+        </div>
+        <div class="col-lg-4">
+          <%= user.tech_score %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-lg-6 col-md-6 col-12 non-tech">
+    <h1 class="main-head primary-text text-left font-weight-bold text-primary">Non-Technical</h1>
+    <% @users.order(non_tech_score: :desc).each do |user| %>
+      <div class="each-category" <%= user.current_sign_in_at == nil ? 'style=color:#f07272' : '' %>>
+        <div class="col-lg-8">
+          <%= user.name %>
+        </div>
+        <div class="col-lg-4">
+          <%= user.non_tech_score %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

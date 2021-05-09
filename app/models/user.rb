@@ -46,4 +46,37 @@ class User < ApplicationRecord
     self.password = "Brainiac@" + self.id.to_s
     self.save!
   end
+
+  def self.calculate_scores
+    User.all.each do |u|
+      u.user_questions.each do |q|
+        if q.option_id == q.question.ans
+          q.scored = 1
+          q.save!
+        end
+      end
+      if u.appears_for == "tech"
+        u.calculate_tech_score
+      elsif u.appears_for == "non-tech"
+        u.calculate_non_tech_score
+      else
+        u.calculate_tech_score
+        u.calculate_non_tech_score
+      end
+    end
+  end
+
+  def calculate_tech_score
+    self.tech_1_score = self.user_questions.where("ques_type = ? and level = ?", "tech", 1).sum(:scored)
+    self.tech_2_score = self.user_questions.where("ques_type = ? and level = ?", "tech", 2).sum(:scored)
+    self.tech_score = self.tech_1_score + self.tech_2_score
+    self.save!
+  end
+
+  def calculate_non_tech_score
+    self.non_tech_1_score = self.user_questions.where("ques_type = ? and level = ?", "non-tech", 1).sum(:scored)
+    self.non_tech_2_score = self.user_questions.where("ques_type = ? and level = ?", "non-tech", 2).sum(:scored)
+    self.non_tech_score = self.non_tech_1_score + self.non_tech_2_score
+    self.save!
+  end
 end
